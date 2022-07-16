@@ -32,7 +32,6 @@ void calc_push(struct calc_stack **top, double new_data);
 void calc_pop(struct calc_stack **top, double *out);
 void output(struct stack *top);
 int get_priority(char c);
-//void string_parser(char *input_str, int len, char *output_str, int *out_len);
 void string_parser(char *input_str, char *output_str, int *out_len);
 int initial_string_parser(char *input_str);
 double calculation(char *output_str, int *out_len, double input_data, int *k);
