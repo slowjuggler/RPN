@@ -24,7 +24,7 @@ void push(struct stack **top, char new_data) {
     struct stack *new_ptr = (struct stack*)malloc(sizeof(struct stack));
     if (new_ptr == NULL) {
 	stack_destroy(*top);
-        printf("can't get memory");
+        printf("can't get memory\n");
         exit(1);
     }
     new_ptr->data = new_data;
@@ -102,7 +102,7 @@ int get_priority(char c) {
     }
     if (c >= 'a' && c<= 'z') {
 		res = 3;
-	}
+    }
     return res;
 }
 
@@ -153,9 +153,9 @@ void string_parser(char *input_str, char *output_str, int *out_len) {
     struct stack *sp = NULL;
     int k = 0;
     for (char *p = input_str; *p != '\0'; p++) {
-		if (*p == '-' && *(p - 1) == '(') {
-			 output_str[k++] = 'z';
-		}
+	if (*p == '-' && *(p - 1) == '(') {
+	    output_str[k++] = 'z';
+	}
         if ((*p >= '0' && *p <= '9') || *p == 'x') {
             output_str[k++] = *p;
         }
@@ -184,9 +184,9 @@ void string_parser(char *input_str, char *output_str, int *out_len) {
             p += 2;
         }
         if (*p == 'e' && !strncmp(p, EXP, 3)) {
-			push(&sp, 'e');
-			p +=3;
-		}
+	    push(&sp, 'e');
+	    p +=3;
+	}
         if (*p == '(') {
             push(&sp, '(');
         }
@@ -229,7 +229,7 @@ double calculation(char *output_str, int *out_len, double input_data, int *k) {
     double result = 0;
     struct calc_stack *sp = NULL;
     for (int i = 0; i < *out_len; i++) {
-		if (output_str[i] == 'z' && output_str[i + 1] >= '0' && output_str[i + 1] <= '9') {
+	if (output_str[i] == 'z' && output_str[i + 1] >= '0' && output_str[i + 1] <= '9') {
             double x = output_str[i + 1] - '0';
             double temp = (-1) * x;
             calc_push(&sp, temp);
@@ -267,9 +267,9 @@ double calculation(char *output_str, int *out_len, double input_data, int *k) {
             calc_pop(&sp, &x);
             calc_pop(&sp, &y);
             if (x == 0) {
-				*k = 1;
-				break;
-			}
+		*k = 1;
+		break;
+	    }
             z = y / x;
             calc_push(&sp, z);
         }
