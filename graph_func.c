@@ -23,7 +23,7 @@ void stack_calc_destroy(struct calc_stack *top) {
 void push(struct stack **top, char new_data) {
     struct stack *new_ptr = (struct stack*)malloc(sizeof(struct stack));
     if (new_ptr == NULL) {
-		stack_destroy(*top);
+	stack_destroy(*top);
         printf("can't get memory");
         exit(1);
     }
@@ -47,7 +47,7 @@ void pop(struct stack **top, char *out) {
 void calc_push(struct calc_stack **top, double new_data) {
     struct calc_stack *new_ptr = (struct calc_stack*)malloc(sizeof(struct calc_stack));
     if (new_ptr == NULL) {
-		stack_calc_destroy(*top);
+	stack_calc_destroy(*top);
         printf("can't get memory");
         exit(1);
     }
