@@ -24,7 +24,7 @@ void data_process(char *output_str, int *out_len) {
     }
     for (int i = 0; i < MAX_Y; i++) {
         for (int j = 0; j < MAX_X; j++) {
-            if (output_array[i][j] == 1 && output_array[i][j])  {
+            if (output_array[i][j] == 1)  {
                 printf("*");
             } else {
                 printf(".");
