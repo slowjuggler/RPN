@@ -16,8 +16,8 @@ void data_process(char *output_str, int *out_len) {
         double temp = calculation(output_str, out_len, t, &k);
         j = (int)(ZERO + temp * C_DEL - COEFF);
         if (k == 0 && j < MAX_Y) {
-			output_array[j][i] = 1;
-		}
+		output_array[j][i] = 1;
+	}
         k = 0;
     }
     for (int i = 0; i < MAX_Y; i++) {
@@ -40,11 +40,11 @@ int main() {
     int n = strlen(input_str);
     input_str[n] = '\0';
     if (initial_string_parser(input_str) == 0) {
-		string_parser(input_str, output_str, &out_len);
-		data_process(output_str, &out_len);
-	} else {
-		printf("Uncorrect equation! Please try again!\n");
-	}
+	string_parser(input_str, output_str, &out_len);
+	data_process(output_str, &out_len);
+    } else {
+	printf("Uncorrect equation! Please try again!\n");
+    }
     return 0;
 }
 
