@@ -1,6 +1,6 @@
 1. Description.
 
-Program in C language implementing the "shunting yard" algorithm by Edsger Dijkstra.
+Program in C language implementing the "shunting yard" algorithm by Edsger Dijkstra (https://en.wikipedia.org/wiki/Shunting_yard_algorithm).
 The input is a string that is a mathematical expression (for example sin(cos(2*x)), 2*x/cos(2*(sin(x^2)))) then the string is converted 
 into an output string written using the Dijkstra algorithm in Reverse Polish Notation. 
 The expression is then evaluated in the [0..4Pi] area and the value area [-1..+1] and a graph of the function is plotted.
