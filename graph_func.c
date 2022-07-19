@@ -81,10 +81,10 @@ void output(struct stack *top) {
 int get_priority(char c) {
     int res = 0;
     if (c == '(') {
-	   res = 1;
-	}
-	if (c == '+' || c == '-') {
-       res = 2;
+	res = 1;
+    }
+    if (c == '+' || c == '-') {
+    	res = 2;
     }
     if (c == '*' || c == '/' || (c >= 'a' && c<= 'z')) {
        res = 3;
@@ -142,9 +142,9 @@ void string_parser(char *input_str, char *output_str) {
     struct stack *sp = NULL;
     int k = 0;
     for (char *p = input_str; *p != '\0'; p++) {
-		if (*p == '-' && *(p - 1) == '(') {
-			 output_str[k++] = 'z';
-		}
+	if (*p == '-' && *(p - 1) == '(') {
+	    output_str[k++] = 'z';
+	}
         if ((*p >= '0' && *p <= '9') || *p == 'x') {
             output_str[k++] = *p;
         }
@@ -173,9 +173,9 @@ void string_parser(char *input_str, char *output_str) {
             p += 2;
         }
         if (*p == 'e' && !strncmp(p, EXP, 3)) {
-			push(&sp, 'e');
-			p +=3;
-		}
+	    push(&sp, 'e');
+	    p +=3;
+	}
         if (*p == '(') {
             push(&sp, '(');
         }
@@ -215,7 +215,7 @@ void string_parser(char *input_str, char *output_str) {
 }
 
 void add(struct calc_stack **sp) {
-	double x, y, z;
+    double x, y, z;
     calc_pop(sp, &x);
     calc_pop(sp, &y);
     z = x + y;
@@ -223,7 +223,7 @@ void add(struct calc_stack **sp) {
 }
            
 void sub(struct calc_stack **sp) {
-	 double x, y, z;
+     double x, y, z;
      calc_pop(sp, &x);
      calc_pop(sp, &y);
      z = y - x;
@@ -231,7 +231,7 @@ void sub(struct calc_stack **sp) {
 }
 
 void mul(struct calc_stack **sp) {
-	double x, y, z;
+    double x, y, z;
     calc_pop(sp, &x);
     calc_pop(sp, &y);
     z = y * x;
@@ -239,19 +239,19 @@ void mul(struct calc_stack **sp) {
 }
 
 void divid(struct calc_stack **sp, int *k) {
-	double x, y, z;
+    double x, y, z;
     calc_pop(sp, &x);
     calc_pop(sp, &y);
     if (x == 0) {
-		*k = 1;
-		return;
-	}
+	*k = 1;
+	return;
+    }
     z = y / x;
     calc_push(sp, z);
 }
 
 void power(struct calc_stack **sp) {
-	double x, y, z;
+    double x, y, z;
     calc_pop(sp, &x);
     calc_pop(sp, &y);
     z = pow(y, x);
@@ -259,7 +259,7 @@ void power(struct calc_stack **sp) {
 }
 
 void trigon(struct calc_stack **sp, char c, int *k) {
-	if (c == 's') {
+    if (c == 's') {
         double x, y;
         calc_pop(sp, &x);
         y = sin(x);
@@ -267,17 +267,17 @@ void trigon(struct calc_stack **sp, char c, int *k) {
     }
     if (c == 'c') {
         double x, y;
-            calc_pop(sp, &x);
-            y = cos(x);
-            calc_push(sp, y);
+        calc_pop(sp, &x);
+        y = cos(x);
+        calc_push(sp, y);
     }
     if (c == 't') {
         double x, y;
         calc_pop(sp, &x);
-		if (x >= (M_PI/2)) {
+	if (x >= (M_PI/2)) {
             *k = 1;
              return;
-		}
+	}
         y = tan(x);
         calc_push(sp, y);
      }
@@ -294,7 +294,7 @@ void trigon(struct calc_stack **sp, char c, int *k) {
 }
 
 void others(struct calc_stack **sp, char c, int *k) {
-	if (c == 'q') {
+    if (c == 'q') {
         double x, y;
         calc_pop(sp, &x);
         if (x < 0) {
@@ -303,7 +303,7 @@ void others(struct calc_stack **sp, char c, int *k) {
         }
         y = sqrt(x);
         calc_push(sp, y);
-	}
+    }
     if (c == 'e') {
         double x, y;
         calc_pop(sp, &x);
@@ -311,9 +311,9 @@ void others(struct calc_stack **sp, char c, int *k) {
         calc_push(sp, y);
     }
     if (c == 'l') {
-		double x, y;
-		calc_pop(sp, &x);
-		if (x <= 0) {
+	double x, y;
+	calc_pop(sp, &x);
+	if (x <= 0) {
             *k = 1;
              return;
         }
@@ -326,7 +326,7 @@ double calculation(char *output_str, double input_data, int *k) {
     double result = 0;
     struct calc_stack *sp = NULL;
     for (char *p = output_str; *p != '\0'; p++) {
-		if (*p == 'z' && *(p + 1) >= '0' && *(p + 1) <= '9') {
+	if (*p == 'z' && *(p + 1) >= '0' && *(p + 1) <= '9') {
             double x = *(p + 1) - '0';
             double temp = (-1) * x;
             calc_push(&sp, temp);
@@ -334,14 +334,14 @@ double calculation(char *output_str, double input_data, int *k) {
             double x = *p - '0';
             calc_push(&sp, x);
         }
-		if (*p == 'x') {
-			calc_push(&sp, input_data);
+	if (*p == 'x') {
+	    calc_push(&sp, input_data);
         }
         if (*p == '+') {
-			add(&sp);
+	    add(&sp);
         }
         if (*p == '-') {
-			sub(&sp);
+	    sub(&sp);
         }
         if (*p == '*') {
             mul(&sp);
