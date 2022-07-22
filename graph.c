@@ -41,8 +41,8 @@ int main() {
     if (initial_string_parser(input_str) == 0) {
 	string_parser(input_str, output_str);
 	data_process(output_str);
-	} else {
-	     printf("Uncorrect equation! Please try again!\n");
+    } else {
+	printf("Uncorrect equation! Please try again!\n");
 	}
     return 0;
 }
