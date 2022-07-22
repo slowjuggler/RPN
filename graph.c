@@ -15,16 +15,14 @@ void data_process(char *output_str) {
         double t = M_PI * 4 / MAX_X * i;
         double temp = calculation(output_str, t, &k);
         j = (int)(ZERO + temp * C_DEL - COEFF);
-        if (k == 0) {
-            if (j < MAX_Y) {
+        if (k == 0 && j < MAX_Y) {
                 output_array[j][i] = 1;
-            }
         }
         k = 0;
     }
     for (int i = 0; i < MAX_Y; i++) {
         for (int j = 0; j < MAX_X; j++) {
-            if (output_array[i][j] == 1 && output_array[i][j])  {
+            if (output_array[i][j] == 1)  {
                 printf("*");
             } else {
                 printf(".");
@@ -41,12 +39,10 @@ int main() {
     int n = strlen(input_str);
     input_str[n] = '\0';
     if (initial_string_parser(input_str) == 0) {
-		string_parser(input_str, output_str);
-		data_process(output_str);
+	string_parser(input_str, output_str);
+	data_process(output_str);
 	} else {
-		printf("Uncorrect equation! Please try again!\n");
+	     printf("Uncorrect equation! Please try again!\n");
 	}
     return 0;
 }
-
-
