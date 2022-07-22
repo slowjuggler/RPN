@@ -96,46 +96,46 @@ int get_priority(char c) {
 }
 
 int initial_string_parser(char *input_str) {
-	int res = 0;
-	int brack_open = 0;
-	int brack_close = 0;
-	for (char *p = input_str; *p != '\0'; p++) {
-		if (*p == 's' && !strncmp(p, SIN, 3)) {
-			p = p + 3;
-		}
-		if (*p == 's' && !strncmp(p, SQRT, 4)) {
-			p = p + 4;
-		}
-		if (*p == 't' && !strncmp(p, TAN, 2)) {
-			p = p + 2;
-		}
-		if (*p == 'c' && !strncmp(p, COS, 3)) {
-			p = p + 3;
-		}
-		if (*p == 'c' && !strncmp(p, CTAN, 3)) {
-			p = p + 3;
-		}	
-		if (*p == 'l' && !strncmp(p, LOG, 2)) {
-			p = p + 2;
-		}
-		if (*p == 'e' && !strncmp(p, EXP, 3)) {
-			p = p + 3;
-		}
-		if (*p == '(') {
-			brack_open++;
-		}
-		if (*p == ')') {
-			brack_close++;
-		}
-		if ((*p >= 'a' && *p < 'x') || (*p > 'x' && *p <= 'z')) {
-			res = 1;
-		}
-		if (*p == '(' && *(p + 1) == '-') {
-			res = 1;
-		}
+    int res = 0;
+    int brack_open = 0;
+    int brack_close = 0;
+    for (char *p = input_str; *p != '\0'; p++) {
+	if (*p == 's' && !strncmp(p, SIN, 3)) {
+	    p = p + 3;
 	}
-	res = res + (brack_open - brack_close);
-	return res;
+	if (*p == 's' && !strncmp(p, SQRT, 4)) {
+	    p = p + 4;
+	}
+	if (*p == 't' && !strncmp(p, TAN, 2)) {
+	    p = p + 2;
+	}
+	if (*p == 'c' && !strncmp(p, COS, 3)) {
+	    p = p + 3;
+	}
+	if (*p == 'c' && !strncmp(p, CTAN, 3)) {
+	    p = p + 3;
+	}	
+	if (*p == 'l' && !strncmp(p, LOG, 2)) {
+	    p = p + 2;
+	}
+	if (*p == 'e' && !strncmp(p, EXP, 3)) {
+	    p = p + 3;
+	}
+	if (*p == '(') {
+	    brack_open++;
+	}
+	if (*p == ')') {
+	    brack_close++;
+	}
+	if ((*p >= 'a' && *p < 'x') || (*p > 'x' && *p <= 'z')) {
+	    res = 1;
+	}
+	if (*p == '(' && *(p + 1) == '-') {
+	    res = 1;
+	}
+    }
+    res = res + (brack_open - brack_close);
+    return res;
 }
 		
 void string_parser(char *input_str, char *output_str) {
